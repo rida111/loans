@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: "loans"
+
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  #provide connection details of rabbitmq inside each ms:
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/loans_db
+    username: root
+    password: admin000pwd
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  profiles:
+    active: qa
+
+server:
+  port: 9191
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "busrefresh"
