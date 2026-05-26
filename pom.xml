@@ -46,10 +46,10 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-        </dependency>
+        </dependency>-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -109,7 +109,7 @@
 					<!-- here we specify docker image name: we chose this
 					pattern: dockerUsername/image_name:tag/version -->
 					<image>
-						<name>ridasfa1/${project.artifactId}-ms:1.0</name>
+						<name>ridasfa1/${project.artifactId}-ms:1.1</name>
 					</image>
 					<excludes>
 						<exclude>
@@ -119,6 +119,21 @@
 					</excludes>
 				</configuration>
 			</plugin>
+            <!-- NOte that we will use google jib plugin and not build pack
+                    spring-boot:build-image -DskipTests -f pom.xml
+             -->
+            <!-- here is google jib plugin-->
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <to>
+                        <image>ridasfa1/${project.artifactId}-ms:1.2</image>
+                    </to>
+                </configuration>
+            </plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
