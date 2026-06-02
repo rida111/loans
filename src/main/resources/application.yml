@@ -31,8 +31,32 @@ spring:
 server:
   port: 9191
 
+eureka:
+  instance:
+    preferIpAddress: true
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka
+
 management:
   endpoints:
     web:
       exposure:
-        include: "refresh"
+        include: "health,info,refresh"
+
+  endpoint:
+    shutdown:
+      enabled: true
+
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: "loans"
+    description: "Eazy banks loans application"
+    version: "1.1"
