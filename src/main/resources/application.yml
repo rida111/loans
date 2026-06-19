@@ -57,6 +57,6 @@ management:
 
 info:
   app:
-    name: "loans"
+    name: ${spring.application.name}
     description: "Eazy banks loans application"
-    version: "1.5"
+    version: ${APP_VERSION:1.1}
